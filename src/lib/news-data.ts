@@ -1,9 +1,10 @@
 export interface Article {
-  id: number;
+  id: string;
   headline: string;
   content: string;
   category: "Technology" | "Business" | "World";
   imageId: string;
+  url: string; // ✅ Added to track uniqueness
 }
 
 // Arrays to store news by category
@@ -12,7 +13,7 @@ export const businessArticles: Article[] = [];
 export const worldArticles: Article[] = [];
 
 // Load environment variable safely
-const NEWS_API_KEY = "500a26cc912049b48ed7eb9c7592c542";
+const NEWS_API_KEY = process.env.NEWS_API_KEY;
 const BASE_URL = "https://newsapi.org/v2/top-headlines";
 
 async function fetchNews(category: string): Promise<Article[]> {
@@ -23,20 +24,24 @@ async function fetchNews(category: string): Promise<Article[]> {
 
   try {
     const response = await fetch(
-      `${BASE_URL}?category=${category.toLowerCase()}&language=en&pageSize=5&apiKey=${NEWS_API_KEY}`
+      `${BASE_URL}?category=${category.toLowerCase()}&language=en&pageSize=10&apiKey=${NEWS_API_KEY}`
     );
 
     const data = await response.json();
 
     if (!data.articles) return [];
 
-    return data.articles.map((a: any, index: number) => ({
-      id: index + 1,
+    // ✅ Map articles with unique ID and include URL for duplicate filtering
+    const articles = data.articles.map((a: any, index: number) => ({
+      id: `${category}-${index + 1}-${a.url || Math.random()}`, // unique even if re-fetched
       headline: a.title || "Untitled",
       content: a.description || a.content || "No content available.",
       category: category as "Technology" | "Business" | "World",
       imageId: `${category.toLowerCase()}-${index}`,
+      url: a.url || "", // store for duplicate checking
     }));
+
+    return articles;
   } catch (error) {
     console.error(`Error fetching ${category} news:`, error);
     return [];
@@ -50,12 +55,24 @@ export async function loadNewsData() {
     fetchNews("World"),
   ]);
 
-  techArticles.push(...tech);
-  businessArticles.push(...business);
-  worldArticles.push(...world);
+  // ✅ Combine and remove duplicates based on URL
+  const allArticles = [...tech, ...business, ...world];
+  const uniqueArticles = allArticles.filter(
+    (article, index, self) =>
+      article.url && index === self.findIndex((a) => a.url === article.url)
+  );
+
+  // ✅ Clear old data and repopulate arrays
+  techArticles.length = 0;
+  businessArticles.length = 0;
+  worldArticles.length = 0;
+
+  techArticles.push(...uniqueArticles.filter((a) => a.category === "Technology"));
+  businessArticles.push(...uniqueArticles.filter((a) => a.category === "Business"));
+  worldArticles.push(...uniqueArticles.filter((a) => a.category === "World"));
 }
 
 export function getArticles(): Article[] {
-  // Combine all categories into one array
+  // ✅ Return combined unique set
   return [...techArticles, ...businessArticles, ...worldArticles];
 }

@@ -18,8 +18,8 @@ export function ArticleList({ articles }: ArticleListProps) {
       <CardContent>
         <ScrollArea className="h-[calc(100vh-12rem)]">
           <div className="space-y-4">
-            {articles.map((article) => (
-              <ArticleListItem key={article.id} article={article} />
+            {articles.map((article,index) => (
+              <ArticleListItem key={`${article.category}-${index}`} article={article} />
             ))}
           </div>
         </ScrollArea>
