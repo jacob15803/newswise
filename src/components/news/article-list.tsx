@@ -1,4 +1,8 @@
+"use client";
+
 import { type Article } from "@/lib/news-data";
+import { useEffect } from "react";
+import { loadNewsData } from "@/lib/news-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArticleListItem } from "./article-list-item";
@@ -8,6 +12,10 @@ interface ArticleListProps {
 }
 
 export function ArticleList({ articles }: ArticleListProps) {
+  useEffect(() => {
+    loadNewsData();
+  }, []);
+
   return (
     <Card className="h-full">
       <CardHeader>
