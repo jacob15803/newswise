@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useEffect, useRef, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { handleSummarizeNews, type ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +27,7 @@ function SubmitButton() {
 
 export function SummarizeNewsPanel() {
   const initialState: ActionState = {};
-  const [state, formAction] = useFormState(handleSummarizeNews, initialState);
+  const [state, formAction] = useActionState(handleSummarizeNews, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 

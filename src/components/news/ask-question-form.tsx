@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useEffect, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { handleAskQuestion, type ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,7 +22,7 @@ function SubmitButton() {
 
 export function AskQuestionForm() {
   const initialState: ActionState = {};
-  const [state, formAction] = useFormState(handleAskQuestion, initialState);
+  const [state, formAction] = useActionState(handleAskQuestion, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
