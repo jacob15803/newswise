@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "tech-news",
+      "description": "Abstract technology background",
+      "imageUrl": "https://images.unsplash.com/photo-1700427296131-0cc4c4610fc6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWNobm9sb2d5JTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxNzMxNjkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technology abstract"
+    },
+    {
+      "id": "business-news",
+      "description": "Modern city skyline",
+      "imageUrl": "https://images.unsplash.com/photo-1502228362178-086346ac6862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaXR5JTIwc2t5bGluZXxlbnwwfHx8fDE3NjE3ODk2NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city skyline"
+    },
+    {
+      "id": "world-news",
+      "description": "Globe showing continents",
+      "imageUrl": "https://images.unsplash.com/photo-1564053489984-317bbd824340?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b3JsZCUyMGdsb2JlfGVufDB8fHx8MTc2MTc3MDczMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "world globe"
+    },
+    {
+      "id": "ai-dev",
+      "description": "Developer coding on a laptop",
+      "imageUrl": "https://images.unsplash.com/photo-1698919585693-191c51b66cde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkZXZlbG9wZXIlMjBjb2Rpbmd8ZW58MHx8fHwxNzYxNzA5MzUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "developer coding"
+    }
+  ]
 }
