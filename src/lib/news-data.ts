@@ -12,7 +12,7 @@ export const businessArticles: Article[] = [];
 export const worldArticles: Article[] = [];
 
 // Load environment variable safely
-const NEWS_API_KEY = process.env.NEWS_API_KEY;
+const NEWS_API_KEY = "500a26cc912049b48ed7eb9c7592c542";
 const BASE_URL = "https://newsapi.org/v2/top-headlines";
 
 async function fetchNews(category: string): Promise<Article[]> {

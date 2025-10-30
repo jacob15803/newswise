@@ -1,9 +1,10 @@
 import AppHeader from "@/components/app-header";
 import { ArticleList } from "@/components/news/article-list";
 import { ControlPanel } from "@/components/news/control-panel";
-import { getArticles } from "@/lib/news-data";
+import { getArticles, loadNewsData } from "@/lib/news-data";
 
-export default function Home() {
+export default async function Home() {
+  await loadNewsData();
   const articles = getArticles();
 
   return (
