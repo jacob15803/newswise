@@ -17,14 +17,14 @@ const NEXT_PUBLIC_NEWS_API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 const BASE_URL = "https://newsapi.org/v2/top-headlines";
 
 async function fetchNews(category: string): Promise<Article[]> {
-  if (!NEWS_API_KEY) {
+  if (!NEXT_PUBLIC_NEWS_API_KEY) {
     console.error("❌ Missing NEWS_API_KEY in environment variables");
     return [];
   }
 
   try {
     const response = await fetch(
-      `${BASE_URL}?category=${category.toLowerCase()}&language=en&pageSize=10&apiKey=${NEWS_API_KEY}`
+      `${BASE_URL}?category=${category.toLowerCase()}&language=en&pageSize=10&apiKey=${NEXT_PUBLIC_NEWS_API_KEY}`
     );
 
     const data = await response.json();
